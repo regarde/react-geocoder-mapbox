@@ -1,0 +1,41 @@
+{
+  "name": "react-geocoder-mapbox",
+  "version": "2.5.11",
+  "description": "a mapbox geocoder component",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "start": "watchify example/site.js -o example/bundle.js & st -nc",
+    "build": "babel src -d ./lib"
+  },
+  "repository": "mapbox/react-geocoder.git",
+  "keywords": [
+    "react",
+    "react-component",
+    "geocoder",
+    "flux",
+    "mapbox",
+    "geo"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mapbox/react-geocoder/issues"
+  },
+  "homepage": "https://github.com/mapbox/react-geocoder",
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^2.0.0-beta.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
