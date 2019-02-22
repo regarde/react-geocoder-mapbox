@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import { MapPin, X } from 'react-feather'
 
 import search from './search'
 
@@ -20,6 +21,8 @@ class Geocoder extends PureComponent {
     inputPosition: PropTypes.string,
     inputPlaceholder: PropTypes.string,
     resultFocusClass: PropTypes.string,
+    iconLeftClass: PropTypes.string,
+    iconRightClass:PropTypes.string,
     onSelect: PropTypes.func.isRequired,
     onSuggest: PropTypes.func,
     accessToken: PropTypes.string.isRequired,
@@ -36,6 +39,7 @@ class Geocoder extends PureComponent {
     id: PropTypes.string,
     name: PropTypes.string,
     defaultValue: PropTypes.string,
+    showIcons: PropTypes.bool
   }
 
   static defaultProps = {
@@ -43,6 +47,8 @@ class Geocoder extends PureComponent {
     inputClass: '',
     resultClass: '',
     resultsClass: '',
+    iconLeftClass: '',
+    iconRightClass: '',
     resultFocusClass: 'strong',
     inputPosition: 'top',
     inputPlaceholder: 'Search',
@@ -58,7 +64,8 @@ class Geocoder extends PureComponent {
     routing: false,
     onSuggest: function () {},
     focusOnMount: true,
-    defaultValue: ''
+    defaultValue: '',
+    showIcons: false
   }
 
   state = {
@@ -164,6 +171,12 @@ class Geocoder extends PureComponent {
     this.setState({ isActive: true })
   }
 
+  clearInput() {
+    this.setState({
+      value: ""
+    })
+  }
+
   acceptFocus () {
     if (this.state.focus !== null) {
       this.setState({ value: this.state.results[this.state.focus].place_name })
@@ -193,18 +206,26 @@ class Geocoder extends PureComponent {
 
   render () {
     const input =
-      <input
-        ref={input => this.inputRef = input}
-        className={this.props.inputClass}
-        onChange={this.onInput}
-        onKeyDown={this.onKeyDown}
-        placeholder={this.props.inputPlaceholder}
-        type='text'
-        value={this.state.value}
-        autoComplete='off'
-        id={this.props.id}
-        name={this.props.name}
-      />
+      <div>
+        <input
+          ref={input => this.inputRef = input}
+          className={this.props.inputClass}
+          onChange={this.onInput}
+          onKeyDown={this.onKeyDown}
+          placeholder={this.props.inputPlaceholder}
+          type='text'
+          value={this.state.value}
+          autoComplete='off'
+          id={this.props.id}
+          name={this.props.name}
+        />
+        {this.props.showIcons && (
+          <div>
+            <div className={this.props.iconLeftClass}><MapPin width={24}/></div>
+            <div onClick={(e) => this.clearInput()} className={this.props.iconRightClass}><X width={20}/></div>
+          </div>
+        )}
+      </div>
 
     return (
       <div
