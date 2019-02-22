@@ -39,6 +39,7 @@ class Geocoder extends PureComponent {
     id: PropTypes.string,
     name: PropTypes.string,
     defaultValue: PropTypes.string,
+    showIcons: PropTypes.bool
   }
 
   static defaultProps = {
@@ -63,7 +64,8 @@ class Geocoder extends PureComponent {
     routing: false,
     onSuggest: function () {},
     focusOnMount: true,
-    defaultValue: ''
+    defaultValue: '',
+    showIcons: false
   }
 
   state = {
@@ -169,6 +171,12 @@ class Geocoder extends PureComponent {
     this.setState({ isActive: true })
   }
 
+  clearInput() {
+    this.setState({
+      value: ""
+    })
+  }
+
   acceptFocus () {
     if (this.state.focus !== null) {
       this.setState({ value: this.state.results[this.state.focus].place_name })
@@ -211,8 +219,12 @@ class Geocoder extends PureComponent {
           id={this.props.id}
           name={this.props.name}
         />
-        <div className={this.props.iconLeftClass}><MapPin width={24}/></div>
-        <div className={this.props.iconRightClass}><X width={24}/></div>
+        {this.props.showIcons && (
+          <div>
+            <div className={this.props.iconLeftClass}><MapPin width={24}/></div>
+            <div onClick={(e) => this.clearInput()} className={this.props.iconRightClass}><X width={20}/></div>
+          </div>
+        )}
       </div>
 
     return (
