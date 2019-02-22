@@ -175,6 +175,7 @@ class Geocoder extends PureComponent {
     this.setState({
       value: ""
     })
+    this.props.onSelect("")
   }
 
   acceptFocus () {
