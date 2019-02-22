@@ -198,6 +198,7 @@ class Geocoder extends PureComponent {
 
   render () {
     const input =
+      <div>
         <input
           ref={input => this.inputRef = input}
           className={this.props.inputClass}
@@ -210,7 +211,9 @@ class Geocoder extends PureComponent {
           id={this.props.id}
           name={this.props.name}
         />
-
+        <div className={this.props.iconLeftClass}><MapPin width={24}/></div>
+        <div className={this.props.iconRightClass}><X width={24}/></div>
+      </div>
 
     return (
       <div
@@ -218,13 +221,7 @@ class Geocoder extends PureComponent {
         onFocus={this.showDropdown}
         className={this.props.containerClass}
       >
-        {this.props.inputPosition === 'top' && (
-          <div>
-            {input}
-            <div className={this.props.iconLeftClass}>{MapPin}</div>
-            <div className={this.props.iconRightClass}>{X}</div>
-          </div>
-        )}
+        {this.props.inputPosition === 'top' && input}
         {!!this.state.results.length && this.state.isActive &&
           <ul className={`${this.props.showLoader && this.state.loading ? 'loading' : ''} ${this.props.resultsClass}`}>
             {this.state.results.map((result, i) =>
@@ -240,13 +237,7 @@ class Geocoder extends PureComponent {
             )}
           </ul>
         }
-        {this.props.inputPosition === 'bottom' && (
-          <div>
-            {input}
-            <div className={this.props.iconLeftClass}>{MapPin}</div>
-            <div className={this.props.iconRightClass}>{X}</div>
-          </div>
-        )}
+        {this.props.inputPosition === 'bottom' && input}
       </div>
     )
   }
