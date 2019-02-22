@@ -34,7 +34,8 @@ class Geocoder extends PureComponent {
     limit: PropTypes.string,
     routing: PropTypes.bool,
     id: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
+    defaultValue: PropTypes.string,
   }
 
   static defaultProps = {
@@ -56,7 +57,8 @@ class Geocoder extends PureComponent {
     limit: '5',
     routing: false,
     onSuggest: function () {},
-    focusOnMount: true
+    focusOnMount: true,
+    defaultValue: ''
   }
 
   state = {
@@ -179,6 +181,11 @@ class Geocoder extends PureComponent {
   }
 
   componentDidMount () {
+    if (this.props.defaultValue && this.props.defaultValue!="") {
+      this.setState({
+        value: this.props.defaultValue
+      })
+    }
     if (this.props.focusOnMount) {
       ReactDOM.findDOMNode(this.inputRef).focus()
     }
