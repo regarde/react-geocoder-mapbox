@@ -88,6 +88,12 @@ class Geocoder extends PureComponent {
     return false
   }
 
+  onBlur = e => {
+
+    this.props.onSelect(this.state.value)
+
+  }
+
   onInput = async e => {
     const value = e.target.value
     this.setState({
@@ -212,6 +218,7 @@ class Geocoder extends PureComponent {
           ref={input => this.inputRef = input}
           className={this.props.inputClass}
           onChange={this.onInput}
+          onBlur={this.onBlur}
           onKeyDown={this.onKeyDown}
           placeholder={this.props.inputPlaceholder}
           type='text'
