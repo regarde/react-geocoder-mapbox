@@ -218,7 +218,7 @@ class Geocoder extends PureComponent {
           ref={input => this.inputRef = input}
           className={this.props.inputClass}
           onChange={this.onInput}
-          onBlur={this.onInput}
+          onBlur={this.onBlur}
           onKeyDown={this.onKeyDown}
           placeholder={this.props.inputPlaceholder}
           type='text'
