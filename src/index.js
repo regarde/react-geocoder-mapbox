@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import { MapPin, X } from 'react-feather'
 
 import search from './search'
 
@@ -20,6 +21,8 @@ class Geocoder extends PureComponent {
     inputPosition: PropTypes.string,
     inputPlaceholder: PropTypes.string,
     resultFocusClass: PropTypes.string,
+    iconLeftClass: PropTypes.string,
+    iconRightClass:PropTypes.string,
     onSelect: PropTypes.func.isRequired,
     onSuggest: PropTypes.func,
     accessToken: PropTypes.string.isRequired,
@@ -43,6 +46,8 @@ class Geocoder extends PureComponent {
     inputClass: '',
     resultClass: '',
     resultsClass: '',
+    iconLeftClass: '',
+    iconRightClass: '',
     resultFocusClass: 'strong',
     inputPosition: 'top',
     inputPlaceholder: 'Search',
@@ -193,18 +198,22 @@ class Geocoder extends PureComponent {
 
   render () {
     const input =
-      <input
-        ref={input => this.inputRef = input}
-        className={this.props.inputClass}
-        onChange={this.onInput}
-        onKeyDown={this.onKeyDown}
-        placeholder={this.props.inputPlaceholder}
-        type='text'
-        value={this.state.value}
-        autoComplete='off'
-        id={this.props.id}
-        name={this.props.name}
-      />
+      <div>
+        <input
+          ref={input => this.inputRef = input}
+          className={this.props.inputClass}
+          onChange={this.onInput}
+          onKeyDown={this.onKeyDown}
+          placeholder={this.props.inputPlaceholder}
+          type='text'
+          value={this.state.value}
+          autoComplete='off'
+          id={this.props.id}
+          name={this.props.name}
+        />
+        <div className={this.props.iconLeftClass}>{MapPin}</div>
+        <div className={this.props.iconRightClass}>{X}</div>
+      </div>
 
     return (
       <div
